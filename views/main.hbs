@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB CRUD Examples</title>
+</head>
+<body>
+    <h1>Employee's details page</h1>
+    <br><br><hr>
+    {{#if edit_details}}
+    Edit Details
+    <form method="post" action="/edit_empdetails/{{edit_details._id}}">
+        <label for="name">
+           Name:
+        </label>
+        <input id="name" type="text" name="name" value={{edit_details.name}}>
+        <label>
+          Age:
+        </label>
+        <input id="age" type="number" name="age" value={{edit_details.age}}>
+        <label>
+          Position:
+        </label>
+        <input id="position" type="text" name="position" value={{edit_details.position}}>
+         <label>
+          Salary:
+        </label>
+        <input id="salary" type="number" name="salary" value={{edit_details.salary}}>
+        <input type="submit">
+    </form>
+    {{else}}
+    <form method="post" action="post_empdetails">
+        <label for="name">
+           Name:
+        </label>
+        <input id="name" type="text" name="name">
+        <label>
+          Age:
+        </label>
+        <input id="age" type="number" name="age">
+        <label>
+          Position:
+        </label>
+        <input id="position" type="text" name="position">
+         <label>
+          Salary:
+        </label>
+        <input id="salary" type="number" name="salary">
+        <input type="submit">
+    </form>
+    {{/if}}
+    <br><hr>
+    <h3>{{message}}</h3>
+ <ul>
+    {{#each employees}}
+   
+        <li>{{this.name}} - {{this.age}} - {{this.position}} - {{this.salary}} <a href="/edit_details/{{this._id}}">Edit</a>   <a href='/delete_details/{{this._id}}' onclick="return confirm('Are you sure to delete?')">Delete</a></li>
+    
+    {{/each}}
+    </ul>
+    <br><br><hr>
+</body>
+</html>
