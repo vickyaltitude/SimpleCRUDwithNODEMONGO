@@ -62,7 +62,7 @@ app.get('/delete_details/:id',async (req,res)=>{
     let fetchedId = req.params.id;
     let employeesCollection = await getDataBase();
           await employeesCollection.deleteOne({_id:new ObjectID(fetchedId)});
-   res.redirect('/')
+   res.redirect('/?status=1')
 })
 
 app.listen(8000,()=> console.log('server is running successfully'));
